@@ -13,11 +13,7 @@ pipeline {
                 sh ' cd oorder && mvn clean install -DskipTests'
             }
         }
-        stage('jenkins-custom-pipeline') {
-            steps {
-                sh 'cd jenkins-custom-pipeline && mvn -Dmaven.test.failure.ignore=true test'
-            }
-        }
+        
     }
 
     post {
