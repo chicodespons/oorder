@@ -46,7 +46,7 @@ class SecurityServiceTest {
     }
 
     @Test
-    @DisplayName("Testing validation with wrong email")
+    @DisplayName("Testing validation with wrong password")
     void givenWrongPassword_whenValidateAuthorization_throwException(){
         //given
         String wrongInput = "ronny@email.com:thisiswrong";
@@ -72,6 +72,20 @@ class SecurityServiceTest {
 
         //then
         Assertions.assertThrows(IncorrectLogInInformationException.class, () -> securityService.validateAuthorization(authorizationString, feature));
+    }
+
+    @Test
+    @DisplayName("Testing validation with user null")
+    void givenBadUserAndPassword_whenValidateAuthorization_throwException(){
+        //given
+        String wrongInput = "ronny@email.com:ronny";
+        byte[] inputEncoded = Base64.getEncoder().encode(wrongInput.getBytes());
+        String authorizationString = "Basic " + new String(inputEncoded);
+
+        Feature feature = Feature.TEST;
+
+        //then
+        Assertions.assertThrows(IncorrectLogInInformationException.class,() -> securityService.validateAuthorization(authorizationString,feature));
     }
 
 }
