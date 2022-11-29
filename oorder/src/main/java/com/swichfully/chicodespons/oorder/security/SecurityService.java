@@ -5,9 +5,10 @@ import com.swichfully.chicodespons.oorder.objects.User;
 import com.swichfully.chicodespons.oorder.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import java.util.Base64;
-
+@Service
 public class SecurityService {
 
     private final Logger logger = LoggerFactory.getLogger(SecurityService.class);

@@ -4,10 +4,11 @@ import com.swichfully.chicodespons.oorder.objects.Admin;
 import com.swichfully.chicodespons.oorder.objects.Customer;
 import com.swichfully.chicodespons.oorder.objects.User;
 import com.swichfully.chicodespons.oorder.security.Role;
+import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.Map;
-
+@Repository
 public class UserRepository {
 
     private final Map<String, User> userMap = new HashMap<>();
