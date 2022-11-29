@@ -2,5 +2,5 @@ package com.swichfully.chicodespons.oorder.security;
 
 public enum Feature {
 
-    TEST, ADMIN_TEST, CREATE_USER;
+    TEST, ADMIN_TEST;
 }

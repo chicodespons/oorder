@@ -17,5 +17,12 @@ public class NewCustomerDto {
 
     private String lastname;
 
-
+    public NewCustomerDto(String password, String email, AddressDto addressDto, String phoneNumber, String firstname, String lastname) {
+        this.password = password;
+        this.email = email;
+        this.addressDto = addressDto;
+        this.phoneNumber = phoneNumber;
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
 }
