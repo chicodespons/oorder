@@ -21,7 +21,7 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
         response.sendError(HttpStatus.BAD_REQUEST.value(), ex.getMessage());
     }
 
-    @ExceptionHandler({PhoneNumberException.class, StreetNumberException.class, PostCodeException.class})
+    @ExceptionHandler({IllegalArgumentException.class,PhoneNumberException.class, StreetNumberException.class, PostCodeException.class})
     protected void illegalArgumentExceptions(IllegalArgumentException ex, HttpServletResponse response)
             throws IOException{
         response.sendError(HttpStatus.BAD_REQUEST.value(), ex.getMessage());
