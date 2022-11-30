@@ -23,15 +23,10 @@ public class Item {
         this.name = name;
         this.description = description;
         this.price = price;
-        setStockAmount(stockAmount);
+        this.stockAmount =stockAmount;
         this.id = idCounter;
         idCounter++;
     }
 
-    public void setStockAmount(int stockAmount) {
-        if(stockAmount<=0){
-            throw new StockAmountException("The stockAmount can't be 0 or negative");
-        } else
-            this.stockAmount = stockAmount;
-    }
+
 }
