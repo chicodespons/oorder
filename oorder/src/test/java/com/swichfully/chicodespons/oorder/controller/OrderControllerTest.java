@@ -45,17 +45,17 @@ class OrderControllerTest {
 
         ItemGroup itemGroup1 = new ItemGroup(
                 itemRepository.getItem("Playdow"),
-                1, 10.99, LocalDate.now().plusDays(1));
+                1, 10.00, LocalDate.now().plusDays(1));
         ItemGroup itemGroup2 = new ItemGroup(
                 itemRepository.getItem("Bubble blazer"),
-                2, 10.50, LocalDate.now().plusDays(1));
+                2, 10.00, LocalDate.now().plusDays(1));
         List<ItemGroup> itemGroupList2 = new ArrayList<>();
         itemGroupList2.add(itemGroup1);
         itemGroupList2.add(itemGroup2);
 
 
         Order orderToCompare = new Order(
-                itemGroupList2, 21.490000000000002, "admin@email.com"
+                itemGroupList2, 20.00, "admin@email.com"
         );
 
         Order orderGiven = RestAssured.given()

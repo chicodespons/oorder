@@ -24,10 +24,10 @@ public class OrderRepository {
     private void mockData() {
         ItemGroup itemGroup1 = new ItemGroup(
                 itemRepository.getItem("Playdow"),
-                1, 10.99, LocalDate.of(2022,12,5));
+                1, 10.00, LocalDate.of(2022,12,5));
         ItemGroup itemGroup2 = new ItemGroup(
                 itemRepository.getItem("Bubble blazer"),
-                2, 10.50, LocalDate.of(2022,12,10));
+                2, 10.00, LocalDate.of(2022,12,10));
 
         List<ItemGroup> itemGroupList1 = new ArrayList<>();
         itemGroupList1.add(itemGroup1);
@@ -36,11 +36,11 @@ public class OrderRepository {
         itemGroupList2.add(itemGroup2);
 
         Order order1 = new Order(
-                itemGroupList1, 10.99, "jonny@email.com"
+                itemGroupList1, 10.00, "jonny@email.com"
         );
 
         Order order2 = new Order(
-                itemGroupList2, 21.49, "admin@email.com"
+                itemGroupList2, 20.00, "admin@email.com"
         );
 
         orderList.add(order1);

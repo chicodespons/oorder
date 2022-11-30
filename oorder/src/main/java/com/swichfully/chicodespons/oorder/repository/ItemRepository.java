@@ -19,12 +19,12 @@ public class ItemRepository {
 
     private void mockData() {
         Item firstItem = new Item("Playdow",
-                "plasticine om mee te spelen", 10.99,
+                "plasticine om mee te spelen", 10.00,
                 10);
 
         Item secondItem = new Item("Bubble blazer",
                 "Bubbles childproof om te blazen",
-                5.25, 15);
+                5.00, 15);
 
         itemMap.put(firstItem.getName(), firstItem);
         itemMap.put(secondItem.getName(),secondItem);
