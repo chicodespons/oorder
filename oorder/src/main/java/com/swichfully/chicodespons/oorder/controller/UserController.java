@@ -1,34 +1,29 @@
 package com.swichfully.chicodespons.oorder.controller;
 
 import com.swichfully.chicodespons.oorder.dtos.NewCustomerDto;
-import com.swichfully.chicodespons.oorder.objects.User;
-import com.swichfully.chicodespons.oorder.repository.UserRepository;
-import com.swichfully.chicodespons.oorder.security.Feature;
 import com.swichfully.chicodespons.oorder.security.SecurityService;
-import com.swichfully.chicodespons.oorder.service.CustomerService;
+import com.swichfully.chicodespons.oorder.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(path = "/users")
 public class UserController {
 
     private final SecurityService securityService;
-    private final CustomerService customerService;
+    private final UserService userService;
 
 
-    public UserController(SecurityService securityService, CustomerService customerService) {
+    public UserController(SecurityService securityService, UserService userService) {
         this.securityService = securityService;
-        this.customerService = customerService;
+        this.userService = userService;
     }
 
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public NewCustomerDto createCustomer(@RequestBody NewCustomerDto newCustomerDto) {
-        return customerService.createNewCustomer(newCustomerDto);
+        return userService.createNewCustomer(newCustomerDto);
     }
 }

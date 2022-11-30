@@ -36,7 +36,11 @@ public class UserRepository {
     }
 
     public void addCustomer(Customer customer) {
-        userMap.put(customer.getEmail(), customer);
+        if (!userMap.containsKey(customer.getEmail())){
+            userMap.put(customer.getEmail(), customer);
+        } else
+            throw new IllegalArgumentException("user allready in repo");
+
     }
 
     public List<User> getAllUsers() {

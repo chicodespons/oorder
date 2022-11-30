@@ -1,7 +1,11 @@
 package com.swichfully.chicodespons.oorder.objects;
 
 import com.swichfully.chicodespons.oorder.security.Role;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
+@Getter
+@EqualsAndHashCode
 public class Admin extends User {
 
     private final Role role;
