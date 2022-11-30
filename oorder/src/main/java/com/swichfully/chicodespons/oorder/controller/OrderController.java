@@ -22,7 +22,6 @@ public class OrderController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.CREATED)
     public Order orderItems(@RequestHeader String authorization, @RequestBody OrderDto orderDto){
         securityService.validateAuthorization(authorization, Feature.ORDER_ITEMS);
         return orderService.orderItems(orderDto, authorization);

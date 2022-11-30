@@ -68,7 +68,7 @@ class OrderControllerTest {
                 .post("/orders")
                 .then()
                 .assertThat()
-                .statusCode(HttpStatus.SC_CREATED)
+                .statusCode(HttpStatus.SC_OK)
                 .extract()
                 .as(Order.class);
 
