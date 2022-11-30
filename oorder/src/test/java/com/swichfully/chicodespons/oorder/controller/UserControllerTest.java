@@ -41,7 +41,7 @@ class UserControllerTest {
                 .post("/users")
                 .then()
                 .assertThat()
-                .statusCode(HttpStatus.SC_CREATED)
+                .statusCode(HttpStatus.SC_OK)
                 .extract()
                 .as(NewCustomerDto.class);
 
