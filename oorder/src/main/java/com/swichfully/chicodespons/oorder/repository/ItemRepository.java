@@ -1,6 +1,7 @@
 package com.swichfully.chicodespons.oorder.repository;
 
 import com.swichfully.chicodespons.oorder.objects.Item;
+import com.swichfully.chicodespons.oorder.objects.ItemGroup;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -36,7 +37,33 @@ public class ItemRepository {
             throw new IllegalArgumentException("Item allready in map");
     }
 
+    public Item getItem(String key){
+        return itemMap.get(key);
+    }
 
 
+    public Item getItemById(int itemId) {
 
+       return itemMap.values().stream()
+               .filter(item -> item.getId()==itemId)
+               .findFirst()
+               .orElseThrow(() -> new IllegalArgumentException("Item for given Id not found"));
+    }
+
+    public void updateStock(ItemGroup itemGroup) {
+        String name = itemGroup.getItem().getName();
+
+        int amountToSubtract = itemGroup.getAmount();
+        int oldStockAmount = getItem(name).getStockAmount();
+        int newStockAmount = oldStockAmount - amountToSubtract;
+
+        String description = itemGroup.getItem().getDescription();
+        double price = itemGroup.getItem().getPrice();
+
+        Item updatedItem = new Item(name, description, price,
+                newStockAmount);
+        updatedItem.setId(getItem(name).getId());
+
+        itemMap.put(name, updatedItem);
+    }
 }

@@ -1,5 +1,6 @@
 package com.swichfully.chicodespons.oorder.objects;
 
+import com.swichfully.chicodespons.oorder.exceptions.StockAmountException;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,8 +23,15 @@ public class Item {
         this.name = name;
         this.description = description;
         this.price = price;
-        this.stockAmount = stockAmount;
+        setStockAmount(stockAmount);
         this.id = idCounter;
         idCounter++;
+    }
+
+    public void setStockAmount(int stockAmount) {
+        if(stockAmount<=0){
+            throw new StockAmountException("The stockAmount can't be 0 or negative");
+        } else
+            this.stockAmount = stockAmount;
     }
 }

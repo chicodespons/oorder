@@ -7,8 +7,8 @@ import java.util.List;
 
 public enum Role {
 
-    CUSTOMER(new ArrayList<>(List.of(Feature.TEST))),
-    ADMIN(new ArrayList<>(List.of(Feature.TEST, Feature.ADMIN_TEST, Feature.ADD_NEW_ITEM)));
+    CUSTOMER(new ArrayList<>(List.of(Feature.TEST, Feature.ORDER_ITEMS))),
+    ADMIN(new ArrayList<>(List.of(Feature.TEST, Feature.ADMIN_TEST, Feature.ADD_NEW_ITEM, Feature.ORDER_ITEMS)));
 
     private List<Feature> featureList;
 

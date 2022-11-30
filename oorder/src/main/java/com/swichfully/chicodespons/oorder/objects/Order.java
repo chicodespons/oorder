@@ -13,11 +13,11 @@ public class Order {
 
     private List<ItemGroup> itemGroupList;
     private double totalPrice;
-    private Customer customer;
+    private User user;
 
-    public Order(List<ItemGroup> itemGroupList, double totalPrice, Customer customer) {
+    public Order(List<ItemGroup> itemGroupList, double totalPrice, User user) {
         this.itemGroupList = itemGroupList;
         this.totalPrice = totalPrice;
-        this.customer = customer;
+        this.user = user;
     }
 }

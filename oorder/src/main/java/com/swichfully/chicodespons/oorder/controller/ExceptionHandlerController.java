@@ -1,9 +1,6 @@
 package com.swichfully.chicodespons.oorder.controller;
 
-import com.swichfully.chicodespons.oorder.exceptions.IncorrectLogInInformationException;
-import com.swichfully.chicodespons.oorder.exceptions.PhoneNumberException;
-import com.swichfully.chicodespons.oorder.exceptions.PostCodeException;
-import com.swichfully.chicodespons.oorder.exceptions.StreetNumberException;
+import com.swichfully.chicodespons.oorder.exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -21,7 +18,7 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
         response.sendError(HttpStatus.BAD_REQUEST.value(), ex.getMessage());
     }
 
-    @ExceptionHandler({IllegalArgumentException.class,PhoneNumberException.class, StreetNumberException.class, PostCodeException.class})
+    @ExceptionHandler({IllegalArgumentException.class,PhoneNumberException.class, StreetNumberException.class, PostCodeException.class, StockAmountException.class})
     protected void illegalArgumentExceptions(IllegalArgumentException ex, HttpServletResponse response)
             throws IOException{
         response.sendError(HttpStatus.BAD_REQUEST.value(), ex.getMessage());

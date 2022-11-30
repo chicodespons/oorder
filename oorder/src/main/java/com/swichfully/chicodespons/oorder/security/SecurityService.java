@@ -39,7 +39,7 @@ public class SecurityService {
         return user.getPassword().equals(password);
     }
 
-    private EmailPassword getEmailPassword(String authorization) {
+    public EmailPassword getEmailPassword(String authorization) {
         String decodedEmailAndPassword = new String(Base64.getDecoder().decode(authorization.substring("Basic ".length())));
         String email = decodedEmailAndPassword.substring(0, decodedEmailAndPassword.indexOf(":"));
         String password = decodedEmailAndPassword.substring(decodedEmailAndPassword.indexOf(":") + 1);
