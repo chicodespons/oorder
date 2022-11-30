@@ -7,6 +7,7 @@ import com.swichfully.chicodespons.oorder.objects.User;
 import com.swichfully.chicodespons.oorder.security.Role;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +36,14 @@ public class UserRepository {
         return userMap.get(email);
     }
 
+    public Customer getCustomer(String email) {
+        if (userMap.get(email).getRole().equals(Role.CUSTOMER)){
+            return (Customer) userMap.get(email);
+        }else
+            throw new IllegalArgumentException("User you where looking for is not a Customer");
+
+    }
+
     public void addCustomer(Customer customer) {
         if (!userMap.containsKey(customer.getEmail())){
             userMap.put(customer.getEmail(), customer);
@@ -45,5 +54,15 @@ public class UserRepository {
 
     public List<User> getAllUsers() {
         return userMap.values().stream().collect(Collectors.toList());
+    }
+
+    public List<Customer> getAllCustomers(){
+        List<Customer> customers = new ArrayList<>();
+        for (User user : userMap.values()) {
+            if (user.getRole().equals(Role.CUSTOMER)){
+                customers.add((Customer) user);
+            }
+        }
+        return customers;
     }
 }
