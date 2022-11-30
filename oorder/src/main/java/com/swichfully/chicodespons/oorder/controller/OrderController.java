@@ -5,6 +5,7 @@ import com.swichfully.chicodespons.oorder.objects.Order;
 import com.swichfully.chicodespons.oorder.security.Feature;
 import com.swichfully.chicodespons.oorder.security.SecurityService;
 import com.swichfully.chicodespons.oorder.service.OrderService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,7 @@ public class OrderController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.CREATED)
     public Order orderItems(@RequestHeader String authorization, @RequestBody OrderDto orderDto){
         securityService.validateAuthorization(authorization, Feature.ORDER_ITEMS);
         return orderService.orderItems(orderDto, authorization);
