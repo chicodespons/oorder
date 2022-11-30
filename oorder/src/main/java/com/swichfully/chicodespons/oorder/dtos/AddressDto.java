@@ -2,9 +2,11 @@ package com.swichfully.chicodespons.oorder.dtos;
 
 import com.swichfully.chicodespons.oorder.exceptions.PostCodeException;
 import com.swichfully.chicodespons.oorder.exceptions.StreetNumberException;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 @Getter
+@EqualsAndHashCode
 public class AddressDto {
 
     private String streetName;

@@ -1,8 +1,10 @@
 package com.swichfully.chicodespons.oorder.dtos;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 @Getter
+@EqualsAndHashCode
 public class NewCustomerDto {
 
     private String password;

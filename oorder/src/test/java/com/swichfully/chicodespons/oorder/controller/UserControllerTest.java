@@ -34,10 +34,10 @@ class UserControllerTest {
 
         NewCustomerDto newCustomer = RestAssured.given()
                 .contentType(ContentType.JSON)
-                .body(newCustomerDtoToCreate)
                 .accept(ContentType.JSON)
                 .when()
                 .port(port)
+                .body(newCustomerDtoToCreate)
                 .post("/users")
                 .then()
                 .assertThat()
@@ -45,15 +45,40 @@ class UserControllerTest {
                 .extract()
                 .as(NewCustomerDto.class);
 
-        assertThat(newCustomer.getPassword()).isEqualTo(newCustomerDtoToCreate.getPassword());
-        assertThat(newCustomer.getEmail()).isEqualTo(newCustomerDtoToCreate.getEmail());
-        assertThat(newCustomer.getAddressDto().getStreetName()).isEqualTo(newCustomerDtoToCreate.getAddressDto().getStreetName());
-        assertThat(newCustomer.getAddressDto().getStreetNumber()).isEqualTo(newCustomerDtoToCreate.getAddressDto().getStreetNumber());
-        assertThat(newCustomer.getAddressDto().getPostCode()).isEqualTo(newCustomerDtoToCreate.getAddressDto().getPostCode());
-        assertThat(newCustomer.getAddressDto().getCity()).isEqualTo(newCustomerDtoToCreate.getAddressDto().getCity());
-        assertThat(newCustomer.getPhoneNumber()).isEqualTo(newCustomerDtoToCreate.getPhoneNumber());
-        assertThat(newCustomer.getFirstname()).isEqualTo(newCustomerDtoToCreate.getFirstname());
-        assertThat(newCustomer.getLastname()).isEqualTo(newCustomerDtoToCreate.getLastname());
+
+        assertThat(newCustomer).isEqualTo(newCustomerDtoToCreate);
+    }
+
+    @Test
+    void createNewCustomer_givenCustomerWrongData_HttpStatusGiven(){
+
+        String jasonBody = """
+                {
+                    "password": "passwd",
+                    "email": "test@email.com",
+                    "addressDto": {
+                        "streetName": "teststreet",
+                        "streetNumber": 5,
+                        "postCode": 10000,
+                        "city": "Etterbeek"
+                    },
+                    "phoneNumber": "0457845745",
+                    "firstname": "Testy",
+                    "lastname": "Testerson"
+                }""";
+
+        RestAssured.given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .when()
+                .port(port)
+                .body(jasonBody)
+                .post("/users")
+                .then()
+                .log().all()
+                .assertThat()
+                .statusCode(HttpStatus.SC_BAD_REQUEST);
+
     }
 
 }
