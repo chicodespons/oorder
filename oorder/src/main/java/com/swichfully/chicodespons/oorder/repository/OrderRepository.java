@@ -36,11 +36,11 @@ public class OrderRepository {
         itemGroupList2.add(itemGroup2);
 
         Order order1 = new Order(
-                itemGroupList1, 10.99, userRepository.getUser("jonny@email.com")
+                itemGroupList1, 10.99, "jonny@email.com"
         );
 
         Order order2 = new Order(
-                itemGroupList2, 21.49, userRepository.getUser("admin@email.com")
+                itemGroupList2, 21.49, "admin@email.com"
         );
 
         orderList.add(order1);

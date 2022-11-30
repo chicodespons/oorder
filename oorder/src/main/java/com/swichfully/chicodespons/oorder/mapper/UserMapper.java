@@ -3,6 +3,7 @@ package com.swichfully.chicodespons.oorder.mapper;
 import com.swichfully.chicodespons.oorder.dtos.NewCustomerDto;
 import com.swichfully.chicodespons.oorder.objects.Address;
 import com.swichfully.chicodespons.oorder.objects.Customer;
+import com.swichfully.chicodespons.oorder.objects.User;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -21,4 +22,5 @@ public class UserMapper {
                 newCustomerDto.getFirstname(),
                 newCustomerDto.getLastname());
     }
+
 }

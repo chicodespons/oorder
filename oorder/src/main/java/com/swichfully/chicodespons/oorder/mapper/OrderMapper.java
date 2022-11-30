@@ -25,13 +25,13 @@ public class OrderMapper {
     public Order mapFromOrderDtoToOrder(OrderDto orderDto, User user) {
 
         double totalPrice = orderDto.getItemGroupDtosList().stream()
-                .mapToDouble(itemGroupDto -> itemGroupDto.getTotalPrice())
+                .mapToDouble(itemGroupDto -> mapFromItemGroupDtoToItemGroup(itemGroupDto).getTotalPrice())
                 .sum();
 
 
         return new Order(
                 mapFromItemGroupDtoToItemGroupList(orderDto.getItemGroupDtosList()),
-                totalPrice, user
+                totalPrice, user.getEmail()
                 );
     }
 
@@ -46,6 +46,7 @@ public class OrderMapper {
         Item item = getItemById(itemGroupDto.getItemId());
         double totalPrice = item.getPrice()*itemGroupDto.getAmount();
         LocalDate shippingDate = calculateShippingDate(itemGroupDto);
+
 
         return new ItemGroup(item,
                 itemGroupDto.getAmount(), totalPrice,

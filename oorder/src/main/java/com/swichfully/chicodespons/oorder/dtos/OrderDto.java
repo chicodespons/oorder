@@ -16,7 +16,7 @@ public class OrderDto {
 
     private List<ItemGroupDto> itemGroupDtosList;
     private double totalPrice;
-    private User user;
+    private String userEmail;
 
     @JsonCreator
     public OrderDto(List<ItemGroupDto> itemGroupDtosList) {
