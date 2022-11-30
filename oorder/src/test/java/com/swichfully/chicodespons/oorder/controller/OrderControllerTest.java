@@ -32,8 +32,8 @@ class OrderControllerTest {
     @Test
     void orderItems_givenOrderData_OrderWithOrderDateIsReturned(){
 
-        ItemGroupDto itemGroupDto1 = new ItemGroupDto(0, 2);
-        ItemGroupDto itemGroupDto2 = new ItemGroupDto(1,5);
+        ItemGroupDto itemGroupDto1 = new ItemGroupDto(0, 1);
+        ItemGroupDto itemGroupDto2 = new ItemGroupDto(1,2);
 
         List<ItemGroupDto> itemGroupList = new ArrayList<>();
         itemGroupList.add(itemGroupDto1);
@@ -45,17 +45,17 @@ class OrderControllerTest {
 
         ItemGroup itemGroup1 = new ItemGroup(
                 itemRepository.getItem("Playdow"),
-                1, 10.99, LocalDate.now());
+                1, 10.99, LocalDate.now().plusDays(1));
         ItemGroup itemGroup2 = new ItemGroup(
                 itemRepository.getItem("Bubble blazer"),
-                2, 10.50, LocalDate.now());
+                2, 10.50, LocalDate.now().plusDays(1));
         List<ItemGroup> itemGroupList2 = new ArrayList<>();
         itemGroupList2.add(itemGroup1);
         itemGroupList2.add(itemGroup2);
 
 
         Order orderToCompare = new Order(
-                itemGroupList2, 31.99, "admin@email.com"
+                itemGroupList2, 21.490000000000002, "admin@email.com"
         );
 
         Order orderGiven = RestAssured.given()
