@@ -52,7 +52,7 @@ class UserControllerTest {
     @Test
     void createNewCustomer_givenCustomerWrongData_HttpStatusGiven(){
 
-        String jasonBody = """
+        String jsonBody = """
                 {
                     "password": "passwd",
                     "email": "test@email.com",
@@ -72,7 +72,7 @@ class UserControllerTest {
                 .accept(ContentType.JSON)
                 .when()
                 .port(port)
-                .body(jasonBody)
+                .body(jsonBody)
                 .post("/users")
                 .then()
                 .log().all()

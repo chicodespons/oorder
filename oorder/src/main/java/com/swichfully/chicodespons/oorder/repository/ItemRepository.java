@@ -24,6 +24,9 @@ public class ItemRepository {
         Item secondItem = new Item("Bubble blazer",
                 "Bubbles childproof om te blazen",
                 5.25, 15);
+
+        itemMap.put(firstItem.getName(), firstItem);
+        itemMap.put(secondItem.getName(),secondItem);
     }
 
     public void addItem(Item item){
