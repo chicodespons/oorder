@@ -59,6 +59,7 @@ class OrderControllerTest {
         );
 
         Order orderGiven = RestAssured.given()
+                .header("Content-Type", "application/json")
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .auth().preemptive().basic("admin@email.com", "passwd")
