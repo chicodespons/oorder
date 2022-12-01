@@ -7,6 +7,7 @@ import com.swichfully.chicodespons.oorder.objects.Order;
 import com.swichfully.chicodespons.oorder.repository.ItemRepository;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import net.bytebuddy.implementation.bind.annotation.RuntimeType;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class OrderControllerTest {
 
@@ -44,10 +46,10 @@ class OrderControllerTest {
 
         ItemGroup itemGroup1 = new ItemGroup(
                 itemRepository.getItem("Playdow"),
-                1, 10.0, LocalDate.now().plusDays(1));
+                1, 10.0, LocalDate.of(2022,12,2));
         ItemGroup itemGroup2 = new ItemGroup(
                 itemRepository.getItem("Bubble blazer"),
-                2, 10.0, LocalDate.now().plusDays(1));
+                2, 10.0, LocalDate.of(2022,12,2));
         List<ItemGroup> itemGroupList2 = new ArrayList<>();
         itemGroupList2.add(itemGroup1);
         itemGroupList2.add(itemGroup2);
