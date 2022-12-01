@@ -1,7 +1,6 @@
 package com.swichfully.chicodespons.oorder.controller;
 
 import com.swichfully.chicodespons.oorder.dtos.ItemDto;
-import com.swichfully.chicodespons.oorder.objects.Item;
 import com.swichfully.chicodespons.oorder.repository.ItemRepository;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -11,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class ItemControllerTest {
@@ -52,7 +49,7 @@ class ItemControllerTest {
     @Test
     void updateItem_whenGivenNameAndItemDto_UpdateItemInRepository(){
 
-        ItemDto itemDtoToCreate = new ItemDto("Playdow",
+        ItemDto itemDtoToCreate = new ItemDto("velo",
                 "this is a test description",
                 25.00,
                 100);
@@ -64,7 +61,7 @@ class ItemControllerTest {
                 .when()
                 .port(port)
                 .body(itemDtoToCreate)
-                .patch("/items/playdow")
+                .patch("/items/velo")
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.SC_ACCEPTED)
@@ -72,7 +69,7 @@ class ItemControllerTest {
                 .as(ItemDto.class);
 
         assertThat(itemDtoToCreate).isEqualTo(itemDtoGiven);
-        assertThat(itemDtoGiven.getPrice()).isEqualTo(itemRepository.getItem("playdow").getPrice());
+        assertThat(itemDtoGiven.getPrice()).isEqualTo(itemRepository.getItem("velo").getPrice());
     }
 
 //    @Test

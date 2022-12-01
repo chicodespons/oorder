@@ -26,8 +26,13 @@ public class ItemRepository {
                 "Bubbles childproof om te blazen",
                 5.00, 15);
 
+        Item thirdItem = new Item("velo",
+                "daar kan je op rijden",
+                400.00,40);
+
         itemMap.put(firstItem.getName(), firstItem);
         itemMap.put(secondItem.getName(),secondItem);
+        itemMap.put(thirdItem.getName(), thirdItem);
     }
 
     public void addItem(Item item){
