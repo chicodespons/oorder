@@ -66,4 +66,18 @@ public class ItemRepository {
 
         itemMap.put(name, updatedItem);
     }
+
+    public void updateItem(Item itemToUpdate, String name) {
+
+        if(itemMap.containsKey(name)){
+            if(name.equals(itemToUpdate.getName())){
+                itemMap.put(name, itemToUpdate);
+            }else {
+                itemMap.remove(name);
+                itemMap.put(itemToUpdate.getName(), itemToUpdate);
+            }
+        } else
+            throw new IllegalArgumentException("No item found in itemMap for given namekey");
+
+    }
 }

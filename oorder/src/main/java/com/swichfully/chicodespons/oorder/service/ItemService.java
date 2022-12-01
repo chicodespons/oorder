@@ -20,4 +20,9 @@ public class ItemService {
         itemRepository.addItem(itemMapper.mapFromItemDtoToItem(itemDto));
         return itemDto;
     }
+
+    public ItemDto updateItem(ItemDto itemDto, String name) {
+        itemRepository.updateItem(itemMapper.mapFromItemDtoToItem(itemDto), name);
+        return itemDto;
+    }
 }
