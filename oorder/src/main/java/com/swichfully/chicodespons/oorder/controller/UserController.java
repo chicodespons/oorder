@@ -5,7 +5,6 @@ import com.swichfully.chicodespons.oorder.dtos.NewCustomerDto;
 import com.swichfully.chicodespons.oorder.security.Feature;
 import com.swichfully.chicodespons.oorder.security.SecurityService;
 import com.swichfully.chicodespons.oorder.service.UserService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
