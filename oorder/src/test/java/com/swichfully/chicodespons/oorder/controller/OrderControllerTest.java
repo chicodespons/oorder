@@ -13,13 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-
+import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class OrderControllerTest {
 
@@ -59,7 +58,6 @@ class OrderControllerTest {
         );
 
         Order orderGiven = RestAssured.given()
-                .header("Content-Type", "application/json")
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .auth().preemptive().basic("admin@email.com", "passwd")
@@ -76,4 +74,5 @@ class OrderControllerTest {
         assertThat(orderGiven).isEqualTo(orderToCompare);
 
     }
+
 }
