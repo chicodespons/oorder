@@ -2,11 +2,13 @@ package com.swichfully.chicodespons.oorder.dtos;
 
 import com.swichfully.chicodespons.oorder.objects.Address;
 import com.swichfully.chicodespons.oorder.security.Role;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@EqualsAndHashCode
 public class CustomerDto {
 
     private String email;

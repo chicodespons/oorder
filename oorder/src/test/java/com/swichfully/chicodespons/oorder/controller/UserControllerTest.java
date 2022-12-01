@@ -1,8 +1,11 @@
 package com.swichfully.chicodespons.oorder.controller;
 
 import com.swichfully.chicodespons.oorder.dtos.AddressDto;
+import com.swichfully.chicodespons.oorder.dtos.CustomerDto;
 import com.swichfully.chicodespons.oorder.dtos.NewCustomerDto;
+import com.swichfully.chicodespons.oorder.objects.Address;
 import com.swichfully.chicodespons.oorder.repository.UserRepository;
+import com.swichfully.chicodespons.oorder.security.Role;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -79,6 +85,50 @@ class UserControllerTest {
                 .assertThat()
                 .statusCode(HttpStatus.SC_BAD_REQUEST);
 
+    }
+
+    @Test
+    void getAllCustomers_whenGetRequestToUrl_getAListOfCustomerDtos(){
+
+        List<CustomerDto> customerDtosList = new ArrayList<>();
+        CustomerDto customerDtoToCompare = new CustomerDto("jonny@email.com",
+                new Address("jonnystraat", 4,1040,"Etterbeek"),
+                "0475487586", "jonny", "jonson", Role.CUSTOMER);
+        customerDtosList.add(customerDtoToCompare);
+
+        List<CustomerDto> listOfCustomers = RestAssured.given()
+                .with().auth().preemptive().basic("admin@email.com","passwd")
+                .when()
+                .port(port)
+                .get("/users")
+                .then()
+                .assertThat()
+                .statusCode(HttpStatus.SC_OK)
+                .extract()
+                .jsonPath().getList(".", CustomerDto.class);
+
+        assertThat(customerDtosList).isEqualTo(listOfCustomers);
+    }
+
+    @Test
+    void getCustomer_whenGivenEmail_returnCustomerDto(){
+
+        CustomerDto customerDtoToCompare = new CustomerDto("jonny@email.com",
+                new Address("jonnystraat", 4,1040,"Etterbeek"),
+                "0475487586", "jonny", "jonson", Role.CUSTOMER);
+
+        CustomerDto customergiven = RestAssured.given()
+                .with().auth().preemptive().basic("admin@email.com", "passwd")
+                .when()
+                .port(port)
+                .get("/users/jonny@email.com")
+                .then()
+                .assertThat()
+                .statusCode(HttpStatus.SC_OK)
+                .extract()
+                .as(CustomerDto.class);
+
+        assertThat(customerDtoToCompare).isEqualTo(customergiven);
     }
 
 }

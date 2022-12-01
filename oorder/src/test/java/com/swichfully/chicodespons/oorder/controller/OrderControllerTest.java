@@ -46,10 +46,10 @@
 //
 //        ItemGroup itemGroup1 = new ItemGroup(
 //                itemRepository.getItem("Playdow"),
-//                1, 10.0, LocalDate.of(2022,12,2));
+//                1, 10.0, LocalDate.now().plusDays(1));
 //        ItemGroup itemGroup2 = new ItemGroup(
 //                itemRepository.getItem("Bubble blazer"),
-//                2, 10.0, LocalDate.of(2022,12,2));
+//                2, 10.0, LocalDate.now().plusDays(1));
 //        List<ItemGroup> itemGroupList2 = new ArrayList<>();
 //        itemGroupList2.add(itemGroup1);
 //        itemGroupList2.add(itemGroup2);
