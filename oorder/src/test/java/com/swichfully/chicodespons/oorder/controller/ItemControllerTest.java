@@ -1,10 +1,13 @@
 package com.swichfully.chicodespons.oorder.controller;
 
 import com.swichfully.chicodespons.oorder.dtos.ItemDto;
+import com.swichfully.chicodespons.oorder.objects.Item;
+import com.swichfully.chicodespons.oorder.repository.ItemRepository;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 
@@ -17,6 +20,9 @@ class ItemControllerTest {
 
     @LocalServerPort
     private int port;
+
+    @Autowired
+    private ItemRepository itemRepository;
 
     @Test
     void addANewItem_givenItemData_newItemDataIsReturned() {
@@ -41,6 +47,32 @@ class ItemControllerTest {
                 .as(ItemDto.class);
 
         assertThat(itemDtoGiven).isEqualTo(itemDtoToCreate);
+    }
+
+    @Test
+    void updateItem_whenGivenNameAndItemDto_UpdateItemInRepository(){
+
+        ItemDto itemDtoToCreate = new ItemDto("Playdow",
+                "this is a test description",
+                25.00,
+                100);
+
+        ItemDto itemDtoGiven = RestAssured.given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .auth().preemptive().basic("admin@email.com","passwd")
+                .when()
+                .port(port)
+                .body(itemDtoToCreate)
+                .patch("/items/playdow")
+                .then()
+                .assertThat()
+                .statusCode(HttpStatus.SC_ACCEPTED)
+                .extract()
+                .as(ItemDto.class);
+
+        assertThat(itemDtoToCreate).isEqualTo(itemDtoGiven);
+        assertThat(itemDtoGiven.getPrice()).isEqualTo(itemRepository.getItem("playdow").getPrice());
     }
 
 //    @Test
